@@ -1,0 +1,123 @@
+#Cartesian co-ordinate system to cylindrical and spherical co-ordinate system, and vice-versa.
+
+	function cordinate(x,y,z)
+	fprintf('1.to convert cartesian to cylindrical.\n');
+	fprintf('2.to convert cartesian  to spherical.\n');
+	fprintf('3.to convert cylindrical to cartesian.\n');
+	fprintf('4.to convert spherical to cartesian.\n');
+	p=sqrt(x.^2 + y.^2);
+	r=sqrt(x.^2+ y.^2+ z.^2);
+	theta= atand(p/z);
+	fi= atand(y/x);
+	 
+	s = input('choose the option:-  ');
+	switch s
+	    case 1 
+	          if (0<=x) && (0<=z) && (0<=y)
+	 C= [ p, fi, z];
+	    else
+	       fprintf('invalid entry.\n');
+	    end
+	    
+	    case 2 
+	           if (0<=x) && (0<=z) && (0<=y)
+	    C= [ r, theta, fi];
+	       else 
+	           fprintf('invalid entry.\n');
+	       end
+	       
+	    case 3
+	         if (0<p) && (0<=fi) && (fi<2*pi)
+	       C =[p*cos(fi), p*sin(fi), z];
+	                else 
+	           fprintf('invalid entry.\n');
+	           end
+	           
+	     case 4 
+ if (0<=r) && (0<=theta) && (theta<=pi) && (0<=fi) && (fi<2*pi) 
+	       C=[r*sin(theta)*cos(fi),r*sin(theta)*sin(fi),                                  r*cos(theta)];
+	           else 
+	                fprintf('invalid entry.\n');
+	           end
+	 fprintf('after conversion points are: -\n');
+	
+	     disp(C);
+	end
+	end
+
+     
+OUTPUT: -
+>> cordinate(17,45,9)
+1.to convert cartesian to cylindrical.
+2.to convert cartesian  to spherical.
+3.to convert cylindrical to cartesian.
+4.to convert spherical to cartesian.
+  choose the option:-  3
+  the converted points are: -
+  25.2701    40.9319    9.000
+
+
+
+
+
+
+
+ #Cartesian co-ordinate system to cylindrical and spherical co-ordinate system, and vice-versa.
+
+
+	function vector(x,y,z)
+	fprintf('1.to convert cartesian to cylindrical.\n');
+	fprintf('2.to convert cartesian  to spherical.\n');
+	fprintf('3.to convert cylindrical to cartesian.\n');
+	fprintf('4.to convert spherical to cartesian.\n');
+	p=sqrt(x.^2 + y.^2);
+	r=sqrt(x.^2+ y.^2+ z.^2);
+	theta= atand(p/z);
+	fi= atand(y/x);
+	 
+	s = input('choose the option:-  ');
+	switch s
+	  case 1 
+	       if (0<=x) && (0<=z) && (0<=y)
+	 C= [x*cos(fi)+y*sin(fi) ,y*cos(fi)-x*sin(fi) ,z];
+	    else
+	       fprintf('invalid entry.\n');
+	    end
+	  case 2 
+	        if (0<=x) && (0<=z) && (0<=y)
+	 C= [x*sin(theta)*cos(fi)+ y*sin(theta)*sin(fi)+z*cos(theta), x*cos(theta)*cos(fi)+ y*cos(theta)*sin(fi)-z*sin(theta), y*cos(fi)-x*sin(fi)];
+	       else 
+	           fprintf('invalid entry.\n');
+	       end
+	       
+	           case 3
+	           if (O<p) && (0<=fi) && (fi<2*pi)
+	              C =[x*cos(fi)-y*sin(fi),    x*sin(fi)+y*cos(fi), z];
+	                else 
+	           fprintf('invalid entry.\n');
+	           end
+	          
+
+ 
+	case 4 
+	    if (O<=r) && (0<=theta) && (theta<=pi) && (0<=fi) && (fi<2*pi) 
+	       C=[sin(theta)*cos(fi)*x+ cos(theta)*cos(fi)*y-sin(fi)*z , sin(theta)*sin(fi)*x+cos(theta)*sin(fi)*y+cos(fi)*z , cos(theta)*x-sin(theta*y)];
+	                        else 
+	           fprintf('invalid entry.\n');
+	                   end
+	fprintf('after conversion vectors are: -\n');
+	disp(C);
+	end
+	end
+ 
+     
+
+OUTPUT: -
+    >> vector (12,5,17)
+    1.to convert cartesian to cylindrical.
+    2.to convert cartesian to spherical.
+    3.to convert cylindrical to cartesian.
+    4.to convert spherical to cartesian.
+    choose the option: - 4
+    after conversion vector are: -
+     3.8565   20.0235   6.4950
