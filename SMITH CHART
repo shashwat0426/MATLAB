@@ -1,0 +1,59 @@
+ Given normalizing impedance ZO =50Ώ, find the reflection coefficient ГLoad and plot it on the Smith chart for the following.?
+
+A) ZL= 50 + j75 Ώ
+B) ГLoad = 0.3     60o
+C) ZL= 50 +j0 Ώ
+D) Constant VSWR ρ =2.5 
+E) Minimum resistance point on the constant VSWR circle for ρ=1.5 
+
+
+
+A)
+z1=(0:2:100)+ 1j*75;
+z2=0.5*100+1j*(0:2:150);
+z0=50;
+gamma1=z2gamma(z1,z0);
+gamma2=z2gamma(z2,z0);
+s = smithplot(gamma1,'Color',[0.2 0 1],'GridType',"Z");
+hold on;
+s = smithplot(gamma2,'Color','g','LineStyle','-.','LineWidth',1);
+s.Marker = {'+','s'}
+
+
+
+B)
+z1=(0:1:100)+ 1j*32.5;
+z2=0.575*100+1j*(0:2:100);
+z0=50;
+gamma1=z2gamma(z1,z0);
+gamma2=z2gamma(z2,z0);
+s = smithplot(gamma1,'Color',[0.2 0 1],'GridType',"Z");
+hold on;
+s = smithplot(gamma2,'Color','g','LineStyle','-.','LineWidth',1);
+s.Marker = {'+','s'}
+
+
+
+C)
+z1=(0:1:50)+ 1j*0;
+z2=0.1*100+1j*(-100:1:100);
+z0=50;
+gamma1=z2gamma(z1,z0);
+gamma2=z2gamma(z2,z0);
+s = smithplot(gamma1,'Color',[0.2 0 1],'GridType',"Z");
+hold on;
+s = smithplot(gamma2,'Color','g','LineStyle','-.','LineWidth',1);
+s.Marker = {'+','s'}
+
+
+
+D)
+smithplot
+viscircles([real(0) imag(0)],(3/7),'color','b');
+
+
+
+E)
+ smithplot
+ viscircles([real(0) imag(0)],(0.2),'color','r');
+ viscircles([real(0.4) imag(0)],(0.6),'color','b'); 
