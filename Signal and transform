@@ -1,0 +1,366 @@
+1) Unit Impulse Signal
+>> N = input (‘enter no.of samples’);
+>> n = -N:1:N;
+>> x = [zeros(1,N) 1 zeros(1,N)];
+>> stem(n,x);
+>> xlabel(‘time’);
+>> ylabel(‘Amplitude’);
+>> title(‘impulse response’);
+
+
+
+2) Unit Step Signal
+>> N = input(‘enter no.of samples’);
+>> n = -N:1:N;
+>> x = [zeros(1,N) 1 ones(1,N)];
+>> stem(n,x);
+>> xlabel(‘time’);
+>> ylabel(‘Amplitude’);
+>> title(‘impulse response’);
+
+
+
+3) Unit Ramp Signal
+>> N = input(‘enter no.of samples’);
+>> a = input(‘enter amplitude’);
+>> n = 0:1:N;
+>> x = a.*n;
+>> stem(n,x);
+>> xlabel(‘time’);
+>> ylabel(‘Amplitude’);
+>> title(‘impulse response’);
+
+
+
+4) Impulse Response
+Q) To find the impulse response of a difference equation
+
+ y(n) - y(n -1) + 0.9 y(n - 2) = x(n)
+
+>> clc;
+>> clear all;
+>> close all;
+>> disp(‘Difference equation of a digital system’);
+>> N = input(‘Desired impulse response length = ’);
+>> b = input(‘coefficients of x(n) terms = ’);
+>> a = input(‘coefficients of y(n) terms = ’);
+>> h =impz(b,a,N);
+>> disp(‘Impulse response of the system is h = ’);
+>> disp(h);
+>> n = 0:1:N-1;
+>> figure(1);
+>> stem(n,h);
+>> xlabel(‘h[n]’);
+>> title(‘impulse response’);
+>> figure(2);
+>> zplane(b,a);
+>> xlabel(‘Real part’);
+>> ylabel(‘Imaginary part’);
+>> title(‘Poles and zeroes of H(z) in z-plane’);
+
+
+
+5) Step sequence
+>> n = 0:5;
+>> y = [ones(1,6)];
+>> stem(n,y);
+>> xlabel ('Time');
+>> ylabel ('Amplitude');
+>> title ('Step Waveform');
+>> grid on
+
+
+
+6) MATLAB program for Ramp Waveform generation
+ Program code
+>> n =1:5;
+>> stem (n,2*n);
+>> xlabel ('N');
+>> ylabel ('Amplitude');
+>> title ('Ramp Waveform');
+>> grid on;
+
+
+
+7) MATLAB program for sawtooth waveform generation
+>> t = 0:0.01:4;
+>> y = sawtooth(2*pi*t+pi);
+>> plot (t,y);
+>> axis ([0 4 -5 5]);
+>>xlabel ('Time');
+>> ylabel ('Amplitude');
+>> title ('Sawtooth Waveform');
+>> grid on;
+
+
+
+8) MATLAB program for impulse waveform generation
+>> n = -5:5;
+>> y = [zeros(1,5) 1 zeros(1,5)];
+>> stem (n,y);
+>> xlabel ('Time');
+>> ylabel ('Amplitude');
+>> title ('Impulse Waveform');
+>> grid on;
+
+
+
+9) MATLAB program for exponential waveform generation
+>> n = 0:0.01:5;
+>> a = 2;
+>> y = exp(-a*n);
+>> plot (n,y);
+>> xlabel ('Time');
+>> ylabel ('Amplitude');
+>> title ('Exponential waveform');
+>> grid on;
+
+
+10) MATLAB Program to generate a cosine waveform
+>> clc;
+>> clear all;
+>> close all;
+>> f = 1000;
+>> t = 0:1/(f*1000):2/f;
+>> y1 = cos(2*pi*f*t);
+>> plot (t,y1);
+>> xlabel ('Time');
+>> ylabel ('Amplitude');
+>> title ('cosine Waveform');
+>> grid on;
+
+
+
+11) Find the Z Transform
+>> clc;
+>> close all;
+>> clear all;
+>> syms z;
+>> disp('If you input a finite duration sequence x(n), we will give you its z-transform');
+>> nf = input('Please input the initial value of n = ');
+>> nl = input('Please input the final value of n = ');
+>> x = input('Please input the sequence x(n)= ');
+>> syms m;
+>> syms y;
+>> f(y,m) = (y*(z^(-m)));
+>> disp('Z-transform of the input sequence is displayed below');
+>> k = 1;
+>> for n = nf:1:nl
+answer(k) = (f((x(k)),n)); k = k+1;
+end
+>> disp(sum(answer));
+
+
+
+12) Inverse Z Transform
+>> clc;
+>> close all;
+>> clear all;
+>> syms z;
+>> syms a;
+>> syms f(z);
+>> f(z) = input('Please input a function to obtain its inverse z transform ');
+>> disp(iztrans(f(z)));
+
+
+
+13) MATLAB program to find DFT and IDFT using matlab functions
+%DFT and IDFT using matlab functions
+>> clc;
+>> close all;
+>> clear all;
+>> x = input('Please enter the sequence x(n) = ');
+>> N = input('Please enter the length of the DFT N = ');
+>> X = fft(x,N);
+>> n = 0:length(x)-1;
+>> subplot(311);
+>> stem(n,x);
+>> title('Input Sequence');
+>> subplot(323);
+>> n = 0:length(X)-1;
+>> stem(n,X);
+>> disp('DFT of input sequence is ');
+>> disp(X);
+>> title('DFT');
+>>subplot(324);
+>> stem(n,abs(X));
+>> title('Magnitude spectrum');
+>> subplot(325);
+>> stem(n,angle(X));
+>> title('Phase spectrum');
+>> xr = ifft(x,N);
+>> subplot(326);
+>> stem(n,abs(xr));
+>> title('IDFT');
+>> disp('IDFT of input sequence is ');
+>> disp(xr);
+
+
+
+14) MATLAB program to find DFT without using Matlab function
+% DFT program without function
+>> clc;
+>> close all;
+>> clear all;
+>> x = input('Enter the sequence x = ');
+>> N = input('Enter the length of the DFT N = ');
+>> len = length(x);
+>> if N > len
+x = [x zeros(1,N-len)]; elseif N < len
+x = x(1:N);
+
+end
+>> i = sqrt(-1);
+>> w = exp(-i*2*pi/ N);
+>> n = 0:(N-1);
+>> k = 0:(N-1);
+>> nk = n’*k;
+>>W = w.^nk;
+>> X = x*W;
+>> disp(X);
+>> subplot(211);
+>> stem(k,abs(X));
+>> title(‘Magnitude spectrum’);
+>> xlabel(‘Discrete frequency’);
+>> ylabel(‘Amplitude’);
+>> grid on;
+>> subplot(212);
+>> stem(k,angle(X));
+>> title(‘Phase spectrum’);
+>> xlabel(‘Discrete frequency’);
+>> ylabel(‘Phase Angle’);
+>> grid on;
+
+
+
+15) MATLAB program to perform linear convolution of two signals (without using MATLAB function)
+>> clc;
+>> close all;
+>> clear all;
+>> xt = input('Please enter the input sequence in time domain x[n] = ');
+>> lxt = length(xt);
+>> ht = input('Please enter the impulse sequence h[n] = ');
+>> lht = length(ht);
+>> ext = [xt zeros(1,(lht-1))];
+>> eht = [ht zeros(1,(lxt-1))];
+>> xdft = fft(ext);
+>> hdft = fft(eht);
+>> freqm = xdft.*hdft;
+>> yt = [ifft(freqm)];
+>> display('The convoluted sequence is given below');
+>> disp(yt);
+>> subplot(311);
+>>stem(xt);
+>> xlabel('Time');
+>> ylabel('Magnitude');
+>> title('Input sequence x[n]');
+>> subplot(312);
+>> stem(xt);
+>> xlabel('Time');
+>> ylabel('Magnitude');
+>> title('Input sequence 1');
+>> subplot(313);
+>>stem(yt);
+>> xlabel('Time');
+>> ylabel('Magnitude');
+>> title('Convoluted sequence');
+
+
+
+16) Matlab program to find the linear convolution of two signals (using matlab functions)
+%linear convolution (using matlab functions)
+>> clc;
+>> close all;
+>> clear all;
+>> x1 = input('Please enter the input sequence x[n] = ');
+>> x2 = input('Please enter the starting time index of x[n] = ');
+>> h1 = input('Please enter the impulse response h[n] = ');
+>> h2 = input('Please enter the starting time index of h[n] = ');
+>> y = conv(x1,h1);
+>> n = x2 + h2:length(y) + x2 + h2 - 1;
+>> display('The convoluted sequence is given below:');
+>> y
+>> stem(n,y);
+>> xlabel('Time');
+>> ylabel('Amplitude');
+>> title('Linear Convolution');
+
+
+
+17) MATLAB program for equiripple FIR filter
+%equiripple FIR filter
+>> clc;
+>> close all;
+>> clear all;
+>> Fs = 1000;
+>> Fp = input('Input the pass band frequency Fp = ');
+>> Fst = input('Input the stop band frequency Fst = ');
+>>Ap = input('Input the pass band attenuation Ap = ');
+>> Ast = input('Input the stop band attenuation Ast = ');
+>> d = fdesign.lowpass('Fp,Fst,Ap,Ast');
+>> Hd = design(d,'equiripple');
+>> fvtool(Hd);
+
+
+
+18) MATLAB program for Ideal Low Pass Linear Phase FIR Filter
+>> clc;
+>> close all;
+>> clear all;
+>> wc = input('Input the cut-off frequency in radians(less than pi)');
+>> M = input('Input the length of ideal filter');
+>> if wc > pi
+error('cut-off frequency should be less than pi') return
+end
+>> alpha = (M-1)/2;
+>> n = 0:1:(M-1);
+>> m = n – alpha + eps;
+>> hd = sin(wc*m)./(pi*m);
+>> if nargout = = 0
+stem(n,hd);
+title('Impulse response of ideal low pass filter'); 
+xlabel('n');
+ylabel('hd(n)');
+end
+
+
+
+19) MATLAB program to find IDFT without using MATLAB function
+%IDFT program without function
+>> clc;
+>> close all;
+>> clear all;
+>> X = input('Enter the sequence');
+>> N = input('Enter the length of the IDFT');
+>> len = length(X);
+>> if N > len
+X = [X zeros(1,N-len)]; elseif N < len
+X = X(1:N);
+
+end
+>> i = sqrt(-1);
+>> w = exp(-i*2*pi/ N);
+>> n = 0:(N-1);
+>> k = 0:(N-1);
+>> nk = n’*k;
+>> W = w.^( -nk);
+>> x = (X*W)/N;
+>> disp(x);
+>> subplot(211);
+>> stem(k,abs(x));
+>> title(‘Magnitude Plot’);
+>> xlabel(‘N’);
+>> ylabel(‘Amplitude’);
+>> grid on;
+>> subplot(212);
+>> stem(k,angle(x));
+>> title(‘Phase Plot’);
+>> xlabel(‘N’);
+>> ylabel(‘Phase Angle’);
+>> grid on;
+
+
+
+
+
+
