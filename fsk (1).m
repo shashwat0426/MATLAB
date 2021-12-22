@@ -1,3 +1,5 @@
+FREQUENCY SHIF KEYING
+
 clear;
 clc;
 b = input('Enter the Bit stream \n '); %b = [0 1 0 1 1 1 0];
