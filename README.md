@@ -1,4 +1,6 @@
-SMITH CHART 
+# MATLAB
+
+SMITH CHART(O/P) 
 
 (a)
 ![image](https://user-images.githubusercontent.com/60343675/147048231-5188ce48-0be1-45cf-87d6-03e70542ddb6.png)
@@ -17,4 +19,4 @@ SMITH CHART
 
 
    (e)
-   ![image](https://user-images.githubusercontent.com/60343675/147048509-897c25cb-ee42-4c27-8975-06fa32158464.png)# MATLAB
+   ![image](https://user-images.githubusercontent.com/60343675/147048509-897c25cb-ee42-4c27-8975-06fa32158464.png)
